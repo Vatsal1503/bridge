@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://WWW.thymeleaf.org">
+<head>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          name="viewport">
+    <link crossorigin="anonymous"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet"/>
+    <title>Spring Boot Application</title>
+</head>
+<body style="background-color: #efebe9;">
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #9e9e9e;">
+        <h1 class="text-success">Bridge Details and BRI Inputs</h1>
+        <div class="nav-item dropleft ml-auto mx-9">
+            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle my-2" data-toggle="dropdown" href="#"
+               id="navbarDropdown" role="button">
+                Information
+            </a>
+            <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                <a class="dropdown-item" href="#">Bridge Vulnerability</a>
+                <a class="dropdown-item" href="#">Prediction of acute shock severity</a>
+                <a class="dropdown-item" href="#">Average daily traffic</a>
+                <a class="dropdown-item" href="#">Preliminary restoration cost</a>
+                <a class="dropdown-item" href="#">Restoration time</a>
+                <a class="dropdown-item" href="#">Disaster management</a>
+                <a class="dropdown-item" href="#">Area or region affected</a>
+                <a class="dropdown-item" href="#">Duration for Procuring and Tendering</a>
+                <a class="dropdown-item" href="#">Inspection technique</a>
+                <a class="dropdown-item" href="#">Maturity in Planning and scheduling</a>
+                <a class="dropdown-item" href="#">Emergency response management</a>
+                <a class="dropdown-item" href="#">Arrangement funds</a>
+                <a class="dropdown-item" href="#">Availability of materials and equipments</a>
+                <a class="dropdown-item" href="#">Availability of backup contractor</a>
+                <a class="dropdown-item" href="#">Detour length</a>
+                <a class="dropdown-item" href="#">Availability of fund</a>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <form class="form-horizontal" method="POST" th:action="@{/home.html}">
+        <!--Robustness -->
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="Bridge">Bridge Vulnerability : </label>
+            <input id="Bridge" placeholder="Enter value here" type="text">
+            <label class="col-sm-3 control-label" for="Prediction">Prediction of acute shock severity : </label>
+            <input id="Prediction" placeholder="Enter value here" type="text">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="traffic">Average daily traffic : </label>
+            <input id="traffic" placeholder="Enter value here" type="text">
+            <label class="col-sm-3 control-label" for="restoration">Preliminary restoration cost : </label>
+            <input id="restoration" placeholder="Enter value here" type="text">
+        </div>
+        <!--Rapidity-->
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="time">Restoration time : </label>
+            <input id="time" placeholder="Enter value here" type="text">
+            <label class="col-sm-3 control-label" for="Disaster">Disaster management : </label>
+            <input id="Disaster" placeholder="Enter value here" type="text">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="region">Area or region affected : </label>
+            <input id="region" placeholder="Enter value here" type="text">
+            <label class="col-sm-3 control-label" for="Tendering">Duration for Procuring and Tendering : </label>
+            <input id="Tendering" placeholder="Enter value here" type="text">
+        </div>
+        <!--Resourcefulness-->
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="Inspection">Inspection technique : </label>
+            <input id="Inspection" placeholder="Enter value here" type="text">
+            <label class="col-sm-3 control-label" for="Maturity">Maturity in Planning and scheduling : </label>
+            <input id="Maturity" placeholder="Enter value here" type="text">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="Emergency">Emergency response management : </label>
+            <input id="Emergency" placeholder="Enter value here" type="text">
+            <label class="col-sm-3 control-label" for="Arrangement">Arrangement funds : </label>
+            <input id="Arrangement" placeholder="Enter value here" type="text">
+        </div>
+        <!--Redundancy -->
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="materials">Availability of materials and equipments : </label>
+            <input id="materials" placeholder="Enter value here" type="text">
+            <label class="col-sm-3 control-label" for="backup">Availability of backup contractor : </label>
+            <input id="backup" placeholder="Enter value here" type="text">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="Detour">Detour length : </label>
+            <input id="Detour" placeholder="Enter value here" type="text">
+            <label class="col-sm-3 control-label" for="fund">Availability of fund : </label>
+            <input id="fund" placeholder="Enter value here" type="text">
+        </div>
+        <button class="btn btn-info col-2" type="submit">Generate BRI</button>
+    </form>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script crossorigin="anonymous"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>
