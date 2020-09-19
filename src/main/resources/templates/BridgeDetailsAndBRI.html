@@ -39,62 +39,536 @@
             </div>
         </div>
     </nav>
-    <br>
-    <form class="form-horizontal" method="POST" th:action="@{/home.html}">
+    <form class="form-horizontal border" method="POST" th:action="@{/BridgeDetailsAndBRI/genratebri}" th:object="${BRI}">
+        <h3 class="text-danger text-center" th:text="${name}"></h3>
         <!--Robustness -->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="Bridge">Bridge Vulnerability : </label>
-            <input id="Bridge" placeholder="Enter value here" type="text">
-            <label class="col-sm-3 control-label" for="Prediction">Prediction of acute shock severity : </label>
-            <input id="Prediction" placeholder="Enter value here" type="text">
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="traffic">Average daily traffic : </label>
-            <input id="traffic" placeholder="Enter value here" type="text">
-            <label class="col-sm-3 control-label" for="restoration">Preliminary restoration cost : </label>
-            <input id="restoration" placeholder="Enter value here" type="text">
-        </div>
+        <fieldset class="border border-primary rounded-sm w-100 p-3">
+            <legend  class="w-auto text-dark">Robustness</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#BridgeVulnerabilityformmodal">Bridge Vulnerability :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Bridge_Vulnerability}" >
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Predictionformmodal">Prediction of acute shock severity :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Prediction_of_acute_shock_severity}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Averagedailytrafficformmodal">Average daily traffic :</a></label>
+                <select class="form-control-sm" style="width:auto;"  th:field="*{Average_daily_traffic}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Preliminaryrestorationcostformmodal">Preliminary restoration cost :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Preliminary_restoration_cost}" id="Prediction_of_acute_shock_severity">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+            </div>
+        </fieldset>
         <!--Rapidity-->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="time">Restoration time : </label>
-            <input id="time" placeholder="Enter value here" type="text">
-            <label class="col-sm-3 control-label" for="Disaster">Disaster management : </label>
-            <input id="Disaster" placeholder="Enter value here" type="text">
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="region">Area or region affected : </label>
-            <input id="region" placeholder="Enter value here" type="text">
-            <label class="col-sm-3 control-label" for="Tendering">Duration for Procuring and Tendering : </label>
-            <input id="Tendering" placeholder="Enter value here" type="text">
-        </div>
+        <fieldset class="border border-primary rounded-sm w-100 p-3">
+            <legend  class="w-auto text-dark">Rapidity</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Restorationtimeformmodal">Restoration time :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Restoration_time}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Disastermanagementformmodal">Disaster management :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Disaster_management}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Areaorregionaffectedformmodal">Area or region affected :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Area_or_region_affected}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#DurationforProcuringandTenderingformmodal">Duration for Procuring and Tendering :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Duration_for_Procuring_and_Tendering}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+            </div>
+        </fieldset>
         <!--Resourcefulness-->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="Inspection">Inspection technique : </label>
-            <input id="Inspection" placeholder="Enter value here" type="text">
-            <label class="col-sm-3 control-label" for="Maturity">Maturity in Planning and scheduling : </label>
-            <input id="Maturity" placeholder="Enter value here" type="text">
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="Emergency">Emergency response management : </label>
-            <input id="Emergency" placeholder="Enter value here" type="text">
-            <label class="col-sm-3 control-label" for="Arrangement">Arrangement funds : </label>
-            <input id="Arrangement" placeholder="Enter value here" type="text">
-        </div>
+        <fieldset class="border border-primary rounded-sm w-100 p-3">
+            <legend  class="w-auto text-dark">Resourcefulness</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Inspectiontechniqueformmodal">Inspection technique :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Inspection_technique}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#MaturityinPlanningandschedulingformmodal">Maturity in Planning and scheduling :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Maturity_in_Planning_and_scheduling}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Emergencyresponsemanagementformmodal">Emergency response management :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Emergency_response_management}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Arrangementfundsformmodal">Arrangement funds :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Arrangement_funds}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+            </div>
+        </fieldset>
         <!--Redundancy -->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="materials">Availability of materials and equipments : </label>
-            <input id="materials" placeholder="Enter value here" type="text">
-            <label class="col-sm-3 control-label" for="backup">Availability of backup contractor : </label>
-            <input id="backup" placeholder="Enter value here" type="text">
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="Detour">Detour length : </label>
-            <input id="Detour" placeholder="Enter value here" type="text">
-            <label class="col-sm-3 control-label" for="fund">Availability of fund : </label>
-            <input id="fund" placeholder="Enter value here" type="text">
-        </div>
+        <fieldset class="border border-primary rounded-sm w-100 p-3">
+            <legend  class="w-auto text-dark">Redundancy</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityofmaterialsandequipmentsformmodal">Availability of materials and equipments :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_materials_and_equipments}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityofbackupcontractorformmodal">Availability of backup contractor :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_backup_contractor}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Detourlengthformmodal">Detour length :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Detour_length}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityoffundformmodal">Availability of fund :</a></label>
+                <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_fund}">
+                    <option value=0.00>0.00</option>
+                    <option value=0.25>0.25</option>
+                    <option value=0.50>0.50</option>
+                    <option value=0.75>0.75</option>
+                    <option value=1.00>1.00</option>
+                </select>
+            </div>
+        </fieldset>
+        <br>
         <button class="btn btn-info col-2" type="submit">Generate BRI</button>
     </form>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="BridgeVulnerabilityformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Bridge Vulnerability</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">Bridge vulnerability represents the bridge’s physical
+                        condition exposed to future acute shock. The physical condition
+                        is the relative measure of a bridge’s structural health and condition, and it represents the level of service (LOS) of a bridge toward the acute shocks. Bridge vulnerability can be evaluated by
+                        real time data generation approaches using field instruments and
+                        remote sensing techniques (Nassif et al. 2003, 2017). To assess
+                        the bridge’s performance, finite element models can be developed and calibrated using collected real time data for generating
+                        further simulation data. However, this methodology requires exorbitant computational efforts and technical expertise. However,
+                        wireless sensing techniques using various field instruments such
+                        as accelerometers, strain gauges, thermocouples, dynamic strain
+                        transducers, displacement sensors, vibrometers, and tiltmeters
+                        provide inputs to analyze the current health condition of structures (Bhowmik et al. 2019). By using these inputs, various
+                        mathematical theories (Kalman filter method, Eigen perturbation
+                        method, and Eigen decomposition method.) can be applied to detect real time damage detection in civil structures (Hsieh et al.
+                        2006; Roy et al. 2012; Noel et al. 2017; Bhowmik et al. 2019,
+                        2020). These techniques require low computational efforts, and
+                        they are efficient and user-friendly. However, due to budget
+                        and time constraints, this study assessed bridge vulnerability
+                        based on the subjective judgments of bridge owners and experts.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Predictionformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Prediction of acute shock severity</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">Prediction of acute shock severity represents the
+                        probable intensity of future acute shocks, as predicted by the
+                        bridge owners. The occurrence of acute shock intensity affects
+                        the LOS of bridges. Dong and Frangopol (2015) state that the
+                        probability of incremental damage to the vulnerable structure
+                        depends on these verities of acute shock. Basic judgment and review of historical cases are required to predict the severity of future acute shock in a particular region. Various organizations
+                        attempted to define severity and its level based on the nature
+                        and intensity of acute shocks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Averagedailytrafficformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Average Daily Traffic</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">Average Daily Traffic (ADT) is the assessment of the
+                        traffic flow of a particular bridge. ADT describes the social
+                        losses (Andric and Lu 2017) and shows the importance of a
+                        bridge in the transportation network (Minaie and Moon 2017).
+                        Moreover, ADT signifies the LOS of a bridge based on the
+                        flow of traffic (Deco et al. 2013) and, therefore, represents the
+                        societal value of a bridge to the community.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Preliminaryrestorationcostformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Preliminary Restoration Cost</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;"> Preliminary restoration cost includes the initial estimate of repair/reconstruction, removal of debris, or construction of a temporary bypass after an acute shock (Deco et al.
+                        2013; Andric and Lu 2017). The preliminary restoration cost
+                        is associated with monetary values which are, in general,
+                        based on the deterioration of the bridge’s structural condition.
+                        Therefore, the preliminary restoration cost is one of the important factors in robustness assessment because it signifies the importance of a bridge by indicating that the repair losses
+                        associated with repairs in the aftermath of certain catastrophes
+                        are proportional to the costs of reconstructing the bridge.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Restorationtimeformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Restoration Time</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;"> The restoration time represents the possible time required for restoration work to return a bridge to full and normal
+                        working conditions. In general, the restoration time is recognized
+                        in multiple stages (Karamlou and Bocchini 2015; Karamlou and
+                        Bocchini 2017; Andric and Lu 2017). This study prefers singlepath restoration due to its simplicity and practicality when computing the BRI (Minaie and Moon 2017). The estimation of
+                        specific restoration time depends on the experts’ judgments, organization policies, emergency repair contracts, and historical
+                        cases. Therefore, the restoration time is arguably a technical
+                        factor in the evaluation of bridge resilience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Disastermanagementformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Disaster Management</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">Disaster management practice refers to the acute
+                        shock preparedness programs, educational programs, scheduled
+                        tests, and drill programs conducted by the bridge owners in the
+                        preparedness for acute shocks (Minaie and Moon 2017; Andric
+                        and Lu 2017). This factor represents preparedness data aggregated by the bridge’s administrator (public or private). The 10
+                        criteria considered in this study are based on DMP (2018) and
+                        Minaie and Moon (2017), and they are outlined as follows:
+                        (1) community extreme event education programs, scheduled
+                        test and drill programs; (2) designated evacuation routes; (3) designated shelters at a high point (more than high flood level) and
+                        near to the bridge; (4) disaster management plans and designated
+                        centers; (5) first responders equipped with the necessary tools
+                        and equipment such as inflatable boats, rescues rope, life jackets,
+                        life buoys, reflective tapes, and submergible search lights to
+                        manage the postextreme event conditions; (6) a list of contact
+                        number of emergency contractors for incident management;
+                        (7) local access to equipment (such as debris removal, crane,
+                        and excavator), goods, and materials for minimal restorations;
+                        (8) available modes of transportation for individuals >2 (5 km radius around the bridge); (9) access to a number of emergency facilities (including emergency, hospital, fuel stations): ≥5 nos.
+                        (5 km radius around the bridge); and (10) sirens blown, tape recording announcements, and newspaper advertisement to warn
+                        communities of floods, cyclones, and electrical power-cuts. All
+                        10 criteria have their purposes because they are linked with the
+                        administrators of other infrastructures. Therefore, if the majority
+                        of the criteria (listed previously) are satisfied by bridge administrator, then it will aid them with the preparedness of bridge maintenance against acute shock and ensure that the bridges in
+                        question recover functionality faster.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Areaorregionaffectedformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Area Or Region Affected</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">The area or region affected represents the area or region
+                        influenced by an acute shock. Different acute shocks with different
+                        intensities affected different areas or regions (Minaie and Moon
+                        2017). For example, earthquakes and tsunamis typically affect
+                        large areas, whereas floods and landslides affect relatively small
+                        areas. Therefore, in this study, the affected area or region is classified into different categories, which are described in Table 2.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="DurationforProcuringandTenderingformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Duration For Procuring And Tendering</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">The duration for procuring and tendering refers to
+                        the time taken for preparing procurement and offering tenders
+                        for repair and maintenance work. This factor is dependent on organization policies and procedures. Therefore, if more time is
+                        taken to prepare procurement and offer tenders, the speed of recovery of bridge services will be affected adversely.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Inspectiontechniqueformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Inspection Technique</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;"> The inspection technique refers to the application of
+                        different inspection techniques to assess the physical condition
+                        of bridges. These techniques are either an objective or a subjective approach (Minaie and Moon 2017). The objective approach
+                        includes nondestructive testing (NDT), underwater testing, and
+                        analytical procedures for condition assessment and the subjective approach includes the visual inspection procedures for condition assessment of bridges. As mentioned in Table 3, when a
+                        bridge owner uses more techniques such as visual inspection,
+                        analytical techniques, NDT, and underwater inspection for the
+                        physical condition assessment of any bridge it increases the
+                        level of preciseness and reliability (level 5) in the physical condition assessment of bridges and vice versa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="MaturityinPlanningandschedulingformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Maturity In Planning And Scheduling</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;"> Maturity in planning and scheduling refers to
+                        the use of building information modeling (BIM) by the bridge
+                        owner for the planning and scheduling of repair/reconstruction
+                        work. McGuire et al. (2016) developed a method for tracking
+                        and assessing the health condition of bridges using BIM. This
+                        method expedites the inspection and evaluation processes of a
+                        bridge’s condition during its life cycle. In the future, it might result in more automated practice even though the use of BIM is
+                        not a regular practice in bridge engineering and management
+                        currently. However, Barlish and Sullivan (2012) have already
+                        presented the BIM maturity level and described the benefit of
+                        BIM utilization in any construction project. Table 4 gives four
+                        BIM maturity levels. Consideration of this organizational factor
+                        might encourage bridge owners to maximize applications of
+                        BIM in their bridge projects.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Emergencyresponsemanagementformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Emergency Response Management</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">The emergency response management (ERM) level refers to the resources used for the effective, efficient, and standardized operation of a transportation network (Freckleton
+                        et al. 2012). It provides the real time mobilization of traffic
+                        and demand of the bridge during and after an acute shock.
+                        Freckleton et al. (2012) and Minaie and Moon (2017) presented
+                        five levels of ERM as outlined in Table 5. Table 5 explains that
+                        the intelligent transportation and advanced traveler information
+                        systems (level 5) ensure more effective, efficient, and standardized operation of transportation networks during and after acute
+                        shock. The level 1 technique might have more difficulty in managing the traffic than the level 5 technique. Unlike traffic police
+                        (level 1), modern traveler information systems (levels 4 and 5)
+                        direct drivers in advance to less congested alternative routes,
+                        therefore, relieving congestion in that part of the traffic network.
+                        Hence, ERM is considered as a part of resourcefulness because
+                        its activities, methods, procedures, and tools can help to manage
+                        the traffic during and after the disaster</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Arrangementfundsformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Arrangement Funds</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">Arrangements of funds refers to the adjustment of
+                        the financial budget for repair/reconstruction work. The adjustment is required only if there is a strain in the available budget.
+                        Therefore, the factor is important for resilience planning because
+                        it will reduce the strain on the budget available and maximize the
+                        option for the bridge owner to respond to the consequences of
+                        acute shocks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Availabilityofmaterialsandequipmentsformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Availability Of Materials And Equipments</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;"> Accessible material and equipment refer to the availability of materials and equipment within the local transportation network. Their availability should be easy and quick
+                        from the local area. For example, materials such as steel or precast girders, piles, and bearings should be easily accessible
+                        within the local area surrounding a particular bridge.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Availabilityofbackupcontractorformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Availability Of Backup Contractor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">Availability of a backup contractor refers to the
+                        availability of disaster response contractors within the local
+                        area. The bridge owner should have a list of the registered, experienced, and competent contractors who can execute repair
+                        and rehabilitation work after an acute shock or loss of functionality. This factor increases redundancy by ensuring that there are
+                        several backup contractors during emergencies.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Detourlengthformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Detour Length</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">Detour length refers to the diversion route around an affected bridge to the ADT or community of a specified area
+                        (Minaie and Moon 2017). It is essential to consider this factor
+                        in the determination of bridge resilience because it represents indirect losses incurred when a bridge is dysfunctional or fails
+                        (Andric and Lu 2017).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="Availabilityoffundformmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #c6ff00;font-size:25px;">Availability Of Fund</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text" style="height: 250px; overflow-y: scroll;text-align: center;text-align: justify;">Availability of funds refers to the financial budget
+                        that is available to the bridge owner for the repair and reconstruction work of a bridge. Deficiencies in the available budget
+                        affect the redundancy measure because they limit the options for
+                        repair and reconstruction works. Hence, if there is a strain on the
+                        availability of the budget, it will affect the recovery of a bridge.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script crossorigin="anonymous"
