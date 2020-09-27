@@ -57,9 +57,10 @@ public class WebController {
     }
 
     @RequestMapping("/BridgeDetailsAndBRI/genratebri")
-    public String saveAndGenrateBRIValue(@ModelAttribute BRI thebri) {
+    public String saveAndGenrateBRIValue(@ModelAttribute BRI thebri,Model model) {
         double dBRI=theBRICalculationService.getsaveAndGenrateBRIValue(thebri);
         logger.info("BRI Value="+dBRI);
+        model.addAttribute("BRI_Value", dBRI);
         return "BridgeDetailsAndBRI.html";
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://WWW.thymeleaf.org">
+<html lang="en" xmlns:th="http://WWW.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no"
           name="viewport">
@@ -11,199 +11,466 @@
     <title>Spring Boot Application</title>
 </head>
 <body style="background-color: #efebe9;">
-<div>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #9e9e9e;">
-        <h1 class="text-success">Bridge Details and BRI Inputs</h1>
-        <div class="nav-item dropleft ml-auto mx-9">
-            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle my-2" data-toggle="dropdown" href="#"
-               id="navbarDropdown" role="button">
-                Information
-            </a>
-            <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                <a class="dropdown-item" href="#">Bridge Vulnerability</a>
-                <a class="dropdown-item" href="#">Prediction of acute shock severity</a>
-                <a class="dropdown-item" href="#">Average daily traffic</a>
-                <a class="dropdown-item" href="#">Preliminary restoration cost</a>
-                <a class="dropdown-item" href="#">Restoration time</a>
-                <a class="dropdown-item" href="#">Disaster management</a>
-                <a class="dropdown-item" href="#">Area or region affected</a>
-                <a class="dropdown-item" href="#">Duration for Procuring and Tendering</a>
-                <a class="dropdown-item" href="#">Inspection technique</a>
-                <a class="dropdown-item" href="#">Maturity in Planning and scheduling</a>
-                <a class="dropdown-item" href="#">Emergency response management</a>
-                <a class="dropdown-item" href="#">Arrangement funds</a>
-                <a class="dropdown-item" href="#">Availability of materials and equipments</a>
-                <a class="dropdown-item" href="#">Availability of backup contractor</a>
-                <a class="dropdown-item" href="#">Detour length</a>
-                <a class="dropdown-item" href="#">Availability of fund</a>
-            </div>
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #9e9e9e;">
+        <h3 class="nav-item text-success">Bridge Details and BRI Inputs</h3>
+        <div class="ml-auto">
+            <button class="btn btn-info" id="showbri" disabled  type="button" data-toggle="modal" data-target="#Generate_BRI">Show BRI Result</button>
+           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Resilience_Rating_Scale"> Resilience Rating Scale </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Range_Of_TOSE_Factors_Values"> Range Of TOSE Factors Values </button>
         </div>
     </nav>
-    <form class="form-horizontal border" method="POST" th:action="@{/BridgeDetailsAndBRI/genratebri}" th:object="${BRI}">
-        <h3 class="text-danger text-center" th:text="${name}"></h3>
-        <!--Robustness -->
-        <fieldset class="border border-primary rounded-sm w-100 p-3">
-            <legend  class="w-auto text-dark">Robustness</legend>
-            <div class="form-group">
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#BridgeVulnerabilityformmodal">Bridge Vulnerability :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Bridge_Vulnerability}" >
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Predictionformmodal">Prediction of acute shock severity :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Prediction_of_acute_shock_severity}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
+    <div class="modal fade" id="Resilience_Rating_Scale" tabindex="-1" role="dialog" aria-labelledby="Resilience Rating Scale" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel"> Proposed description of resilience rating scale</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row border bg-info">
+                            <div class="col-sm-2 text-center font-weight-bold">
+                                <h4>Rating scale</h4>
+                            </div>
+                            <div class="col-lg border-left text-center font-weight-bold">
+                                <h4>Description</h4>
+                            </div>
+                    </div>
+                    <div class="row border">
+                        <div class="col-sm-2 text-center font-weight-bold align-self-center">
+                            I. Excellent
+                        </div>
+                        <div class="col-lg border-left text-justify">
+                            Sound structural vulnerability: exposed to normal acute shock intensity; for very less traffic volume; and possibility of very less restoration cost.
+                            Time taken for restoration will be very less: by fulfilling maximum criteria of preparedness; and also preparing procurement and tendering in
+                            very less time; for one bridge or its parts. Resources such as level five inspection approach, BIM of maturity level three, level five ERM, and no
+                            arrangement of funds is required before the acute shock. To make a bridge redundant more than adequate materials and equipment, backup
+                            contractors, detour, and funds are available.
+                        </div>
+                    </div>
+                    <div class="row border">
+                        <div class="col-sm-2 text-center font-weight-bold align-self-center">
+                            II. Good
+                        </div>
+                        <div class="col-lg border-left text-justify">
+                            More than satisfied structural vulnerability, exposed to low acute shock intensity, for less traffic volume, and the possibility of minor restoration
+                            cost. Time taken for restoration will be less: by fulfilling enough criteria of preparedness; and by preparing procurement and tendering in less
+                            time; for multiple bridges of one network. Resources such as level four inspection approach, BIM of maturity level two, level four ERM, and
+                            less arrangement of funds is required before the acute shock. To make bridge redundant adequate materials and equipment, backup contractors,
+                            detour, and funds are available.
+                        </div>
+                    </div>
+                    <div class="row border">
+                        <div class="col-sm-2 text-center font-weight-bold align-self-center">
+                            III. Fair
+                        </div>
+                        <div class="col-lg border-left text-justify">
+                            Satisfied structural vulnerability, exposed to moderate acute shock intensity, moderate traffic volume, and the possibility of moderate
+                            restoration cost. Time taken for restoration will be reasonable: by fulfilling few criteria of preparedness; and by preparing procurement and
+                            tendering in a reasonable time; for multiple networks affected in the local area. Resources such as level three inspection approach, BIM of
+                            maturity level one, level three ERM, and less arrangement of funds is required before the acute shock. To make a bridge redundant only
+                            adequate materials and equipment, backup contractors, detour, and funds are available.
+                        </div>
+                    </div>
+                    <div class="row border">
+                        <div class="col-sm-2 text-center font-weight-bold align-self-center">
+                            IV. Poor
+                        </div>
+                        <div class="col-lg border-left text-justify">
+                            Unsatisfied structural vulnerability; exposed to severe acute shock intensity; for high traffic volume; and the possibility of major restoration
+                            costs exist. Extra time will be taken for restoration: by fulfilling very few criteria of preparedness; and by preparing procurement and tendering
+                            with increased time; and for multiple networks affected in a regional area. Resources such as level two inspection approach; BIM of maturity
+                            level zero; level two ERM; and reasonable arrangement of funds are required before the acute shock. To make a bridge redundant less than
+                            adequate materials and equipment, backup contractors, detour, and funds are available.
+                        </div>
+                    </div>
+                    <div class="row border">
+                        <div class="col-sm-2 text-center font-weight-bold align-self-center">
+                            V. Critical
+                        </div>
+                        <div class="col-lg border-left text-justify">
+                            More than unsatisfied structural vulnerability: exposed to catastrophic acute shock intensity; for very high traffic volume; and the possibility of
+                            expensive restoration costs exist. More time will be taken for restoration: by fulfilling no criteria of preparedness; and by preparing procurement
+                            and tendering with increased time; for multiple networks of multiple regional areas. Resources such as level one inspection approach: not using
+                            BIM; level one ERM; and major arrangement of funds are required before the acute shock. To make a bridge redundant inadequate materials
+                            and equipment, backup contractors, detour, and funds are available.
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Averagedailytrafficformmodal">Average daily traffic :</a></label>
-                <select class="form-control-sm" style="width:auto;"  th:field="*{Average_daily_traffic}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Preliminaryrestorationcostformmodal">Preliminary restoration cost :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Preliminary_restoration_cost}" id="Prediction_of_acute_shock_severity">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
+        </div>
+    </div>
+    <div class="modal fade" id="Range_Of_TOSE_Factors_Values" tabindex="-1" role="dialog" aria-labelledby="Range Of TOSE Factors Values" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel"> Range Of Values Corresponding To TOSE Factors</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive-lg">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark text-center">
+                            <tr>
+                                <th scope="col">Factors</th>
+                                <th scope="col">Unit(s)</th>
+                                <th scope="col">Excellent</th>
+                                <th scope="col">Good</th>
+                                <th scope="col">Fair</th>
+                                <th scope="col">Poor</th>
+                                <th scope="col">Critical</th>
+                            </tr>
+                            </thead>
+                            <tbody class="text-center bg-light">
+                            <tr>
+                                <td>Bridge Vulnerability</td>
+                                <td>%</td>
+                                <td><=10</td>
+                                <td>10-15</td>
+                                <td>15-20</td>
+                                <td>20-25</td>
+                                <td>>=25</td>
+                            </tr>
+                            <tr>
+                                <td>Prediction of acute shock severity</td>
+                                <td>Intensity</td>
+                                <td>Normal</td>
+                                <td>Low</td>
+                                <td>Moderate</td>
+                                <td>Severe</td>
+                                <td>Catastrophic</td>
+                            </tr>
+                            <tr>
+                                <td>ADT</td>
+                                <td>Nos</td>
+                                <td><=50,000</td>
+                                <td>50,000-75,000</td>
+                                <td>75,000-100,000</td>
+                                <td>100,000-125,000</td>
+                                <td>>=125,000</td>
+                            </tr>
+                            <tr>
+                                <td>Preliminary restoration cost (from available funds)</td>
+                                <td>%</td>
+                                <td><=10</td>
+                                <td>10-15</td>
+                                <td>15-20</td>
+                                <td>20-25</td>
+                                <td>>=25</td>
+                            </tr>
+                            <tr>
+                                <td>Restoration time</td>
+                                <td>Months</td>
+                                <td><=1</td>
+                                <td>1-4</td>
+                                <td>4-8</td>
+                                <td>8-12</td>
+                                <td>>=12</td>
+                            </tr>
+                            <tr>
+                                <td>Disaster management practice</td>
+                                <td>Criteria</td>
+                                <td>>6</td>
+                                <td>>=6</td>
+                                <td>>=4</td>
+                                <td>>=2</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Area or region affected</td>
+                                <td>Category</td>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Duration for procuring and tendering</td>
+                                <td>Days</td>
+                                <td><=25</td>
+                                <td>25-30</td>
+                                <td>30-35</td>
+                                <td>35-40</td>
+                                <td>>=40</td>
+                            </tr>
+                            <tr>
+                                <td>Inspection technique</td>
+                                <td>Level</td>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Maturity in planning and scheduling</td>
+                                <td>Level</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>Not Using</td>
+                            </tr>
+                            <tr>
+                                <td>ERM</td>
+                                <td>--</td>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Arrangement funds</td>
+                                <td>%</td>
+                                <td>Not required</td>
+                                <td><=10%</td>
+                                <td>10-20</td>
+                                <td>20-30</td>
+                                <td>>=30</td>
+                            </tr>
+                            <tr>
+                                <td>Availability of materials and equipmenty</td>
+                                <td>%</td>
+                                <td>100</td>
+                                <td>100-75</td>
+                                <td>75-50</td>
+                                <td>50-25</td>
+                                <td><=25</td>
+                            </tr>
+                            <tr>
+                                <td>Availability of backup contractor</td>
+                                <td>Nos</td>
+                                <td>>=30</td>
+                                <td>30-20</td>
+                                <td>20-10</td>
+                                <td>1-10</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Detour length</td>
+                                <td>km</td>
+                                <td><=5</td>
+                                <td>5-10</td>
+                                <td>10-15</td>
+                                <td>15-20</td>
+                                <td>>=20</td>
+                            </tr>
+                            <tr>
+                                <td>Availability of funds</td>
+                                <td>%</td>
+                                <td>>=50</td>
+                                <td>50-40</td>
+                                <td>40-30</td>
+                                <td><=30</td>
+                                <td>No Fund</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </fieldset>
-        <!--Rapidity-->
-        <fieldset class="border border-primary rounded-sm w-100 p-3">
-            <legend  class="w-auto text-dark">Rapidity</legend>
-            <div class="form-group">
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Restorationtimeformmodal">Restoration time :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Restoration_time}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Disastermanagementformmodal">Disaster management :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Disaster_management}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header text-center bg-info text-warning">
+            <h3 class="text-center" th:text="${name}"></h3>
+        </div>
+        <div class="card-body">
+            <div>
+                <iframe type="application/pdf"
+                        th:src="@{'/pdf/'+${name}+'.pdf'}" alt="Name"
+                        width="100%" height="1400px"></iframe>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Areaorregionaffectedformmodal">Area or region affected :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Area_or_region_affected}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#DurationforProcuringandTenderingformmodal">Duration for Procuring and Tendering :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Duration_for_Procuring_and_Tendering}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
+            <div>
+                <form class="form-horizontal" method="POST" th:action="@{/BridgeDetailsAndBRI/genratebri}" th:object="${BRI}">
+                    <!--Robustness -->
+                    <fieldset class="border border-primary rounded-sm w-100 p-3">
+                        <legend  class="w-auto text-dark">Robustness</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#BridgeVulnerabilityformmodal">Bridge Vulnerability :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Bridge_Vulnerability}" >
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Predictionformmodal">Prediction of acute shock severity :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Prediction_of_acute_shock_severity}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Averagedailytrafficformmodal">Average daily traffic :</a></label>
+                            <select class="form-control-sm" style="width:auto;"  th:field="*{Average_daily_traffic}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Preliminaryrestorationcostformmodal">Preliminary restoration cost :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Preliminary_restoration_cost}" id="Prediction_of_acute_shock_severity">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    <!--Rapidity-->
+                    <fieldset class="border border-primary rounded-sm w-100 p-3">
+                        <legend  class="w-auto text-dark">Rapidity</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Restorationtimeformmodal">Restoration time :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Restoration_time}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Disastermanagementformmodal">Disaster management :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Disaster_management}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Areaorregionaffectedformmodal">Area or region affected :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Area_or_region_affected}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#DurationforProcuringandTenderingformmodal">Duration for Procuring and Tendering :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Duration_for_Procuring_and_Tendering}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    <!--Resourcefulness-->
+                    <fieldset class="border border-primary rounded-sm w-100 p-3">
+                        <legend  class="w-auto text-dark">Resourcefulness</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Inspectiontechniqueformmodal">Inspection technique :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Inspection_technique}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#MaturityinPlanningandschedulingformmodal">Maturity in Planning and scheduling :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Maturity_in_Planning_and_scheduling}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Emergencyresponsemanagementformmodal">Emergency response management :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Emergency_response_management}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Arrangementfundsformmodal">Arrangement funds :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Arrangement_funds}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    <!--Redundancy -->
+                    <fieldset class="border border-primary rounded-sm w-100 p-3">
+                        <legend  class="w-auto text-dark">Redundancy</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityofmaterialsandequipmentsformmodal">Availability of materials and equipments :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_materials_and_equipments}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityofbackupcontractorformmodal">Availability of backup contractor :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_backup_contractor}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Detourlengthformmodal">Detour length :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Detour_length}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityoffundformmodal">Availability of fund :</a></label>
+                            <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_fund}">
+                                <option value=0.00>0.00</option>
+                                <option value=0.25>0.25</option>
+                                <option value=0.50>0.50</option>
+                                <option value=0.75>0.75</option>
+                                <option value=1.00>1.00</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    <br>
+                    <button id="bri" class="btn btn-info col-2" type="submit">Generate BRI</button>
+                </form>
             </div>
-        </fieldset>
-        <!--Resourcefulness-->
-        <fieldset class="border border-primary rounded-sm w-100 p-3">
-            <legend  class="w-auto text-dark">Resourcefulness</legend>
-            <div class="form-group">
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Inspectiontechniqueformmodal">Inspection technique :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Inspection_technique}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#MaturityinPlanningandschedulingformmodal">Maturity in Planning and scheduling :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Maturity_in_Planning_and_scheduling}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
+        </div>
+    </div>
+
+    <!-- Generate_BRI Modal -->
+    <div class="modal fade" id="Generate_BRI" tabindex="-1" role="dialog" aria-labelledby="Generate_BRILabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title text-center text-primary" id="Generate_BRI1">Bridge Resilience</h5>
+                </div>
+                <div class="modal-body bg-secondary">
+                    <h1 class="text-danger text-center" th:text="${BRI_Value}"><b>BRI:</b></h1>
+                </div>
+                <div class="modal-footer bg-dark">
+                    <a th:href="@{/home.html}"><button type="button" class="btn btn-danger" data-dismiss="modal">Close</button></a>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Emergencyresponsemanagementformmodal">Emergency response management :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Emergency_response_management}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Arrangementfundsformmodal">Arrangement funds :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Arrangement_funds}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-            </div>
-        </fieldset>
-        <!--Redundancy -->
-        <fieldset class="border border-primary rounded-sm w-100 p-3">
-            <legend  class="w-auto text-dark">Redundancy</legend>
-            <div class="form-group">
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityofmaterialsandequipmentsformmodal">Availability of materials and equipments :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_materials_and_equipments}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityofbackupcontractorformmodal">Availability of backup contractor :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_backup_contractor}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Detourlengthformmodal">Detour length :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Detour_length}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-                <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityoffundformmodal">Availability of fund :</a></label>
-                <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_fund}">
-                    <option value=0.00>0.00</option>
-                    <option value=0.25>0.25</option>
-                    <option value=0.50>0.50</option>
-                    <option value=0.75>0.75</option>
-                    <option value=1.00>1.00</option>
-                </select>
-            </div>
-        </fieldset>
-        <br>
-        <button class="btn btn-info col-2" type="submit">Generate BRI</button>
-    </form>
+        </div>
+    </div>
     <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="BridgeVulnerabilityformmodal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -571,6 +838,13 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript">
+        $(function () {
+            $("#bri").click(function () {
+                $("#showbri").prop("disabled",false);
+            });
+        });
+    </script>
     <script crossorigin="anonymous"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
