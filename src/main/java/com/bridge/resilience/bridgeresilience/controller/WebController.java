@@ -1,9 +1,7 @@
 package com.bridge.resilience.bridgeresilience.controller;
 
 import com.bridge.resilience.bridgeresilience.model.BRI;
-import com.bridge.resilience.bridgeresilience.model.PDFFile;
 import com.bridge.resilience.bridgeresilience.service.BRICalculationService;
-import com.bridge.resilience.bridgeresilience.service.PdfService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.websocket.server.PathParam;
-import java.util.List;
 
 @Controller
 public class WebController {
 
     private static Logger logger = LoggerFactory.getLogger(WebController.class);
     @Autowired
-    private BRICalculationService theBRICalculationService;
+    private BRICalculationService BRICalculationService;
 
     @RequestMapping("/")
     public String showForm() {
@@ -56,12 +50,15 @@ public class WebController {
         return "BridgeDetailsAndBRI.html";
     }
 
-    @RequestMapping("/BridgeDetailsAndBRI/genratebri")
-    public String saveAndGenrateBRIValue(@ModelAttribute BRI thebri,Model model) {
-        double dBRI=theBRICalculationService.getsaveAndGenrateBRIValue(thebri);
+    @RequestMapping("/BridgeDetailsAndBRI/genratebri/{name}")
+    public String saveAndGenrateBRIValue(@PathVariable("name") String name,BRI thebri,Model model) {
+        //thebri.setBridge_name(name);
+       // logger.info("Bridge Name "+ thebri.getBridge_name());
+        double dBRI= BRICalculationService.save(thebri,name);
         logger.info("BRI Value="+dBRI);
         model.addAttribute("BRI_Value", dBRI);
-        return "BridgeDetailsAndBRI.html";
+        model.addAttribute("BRI",thebri);
+        return "ResultOfBRI.html";
     }
 }
 

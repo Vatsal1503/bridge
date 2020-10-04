@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://WWW.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          name="viewport">
+    <link crossorigin="anonymous"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet"/>
+    <title>Spring Boot Application</title>
+</head>
+<body style="background-color: #efebe9;">
+    <nav class="navbar" style="background-color: #800a7c;">
+        <div class="align-middle">
+            <h3 class="center-block text-center mr-auto" style="color:#1af007;text-align:center">BRI Result</h3>
+        </div>
+    </nav>
+    <div class="card">
+        <div class="card-body">
+            <div class="card-header text-center d-flex justify-content-center" style="background-color:#140f3b;">
+                <h3 class="text-center text-warning">BRI Value : </h3>
+                <h3 class="text-center text-warning" th:text="${BRI_Value}"> </h3>
+            </div>
+            <div style="background-color:#eddedd;">
+                <form class="form-horizontal" method="POST" th:action="@{/home.html}" th:object="${BRI}">
+                    <br>
+                    <h4 class="text-center justify-content-center" style="color:#4107f0;"><b>BRI Input Values </b></h4><br>
+                    <!--Robustness -->
+                    <fieldset class="border border-primary rounded-sm w-100 p-3">
+                        <legend class="w-auto border border-primary rounded-sm w-100 p-1" style="background-color:#19f7f7;color:#6b1e04;"><b>Robustness</b></legend>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-primary"><b>Bridge Vulnerability :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Bridge_Vulnerability}"></label>
+                            <label class="col-sm-4 control-label text-primary"><b>Prediction of acute shock severity :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Prediction_of_acute_shock_severity}"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-primary"><b>Average daily traffic :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Average_daily_traffic}"></label>
+                            <label class="col-sm-4 control-label text-primary"><b>Preliminary restoration cost :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Preliminary_restoration_cost}"></label>
+                        </div>
+                    </fieldset><br>
+                    <!--Rapidity-->
+                    <fieldset class="border border-primary rounded-sm w-100 p-3">
+                        <legend  class="w-auto border border-primary rounded-sm w-100 p-1" style="background-color:#19f7f7;color:#6b1e04;"><b>Rapidity</b></legend>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-primary"><b>Restoration time :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Restoration_time}"></label>
+                            <label class="col-sm-4 control-label text-primary"><b>Disaster management :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Disaster_management}"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-primary"><b>Area or region affected :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Area_or_region_affected}"></label>
+                            <label class="col-sm-4 control-label text-primary"><b>Duration for Procuring and Tendering :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Duration_for_Procuring_and_Tendering}"></label>
+                        </div>
+                    </fieldset><br>
+                    <!--Resourcefulness-->
+                    <fieldset class="border border-primary rounded-sm w-100 p-3">
+                        <legend  class="w-auto border border-primary rounded-sm w-100 p-1" style="background-color:#19f7f7;color:#6b1e04;"><b>Resourcefulness</b></legend>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-primary"><b>Inspection technique :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Inspection_technique}"></label>
+                            <label class="col-sm-4 control-label text-primary"><b>Maturity in Planning and scheduling :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Maturity_in_Planning_and_scheduling}"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-primary"><b>Emergency response management :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Emergency_response_management}"></label>
+                            <label class="col-sm-4 control-label text-primary"><b>Arrangement funds :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Arrangement_funds}"></label>
+                        </div>
+                    </fieldset><br>
+                    <!--Redundancy -->
+                    <fieldset class="border border-primary rounded-sm w-100 p-3">
+                        <legend  class="w-auto border border-primary rounded-sm w-100 p-1" style="background-color:#19f7f7;color:#6b1e04;"><b>Redundancy</b></legend>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-primary"><b>Availability of materials and equipments :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Availability_of_materials_and_equipments}"></label>
+                            <label class="col-sm-4 control-label text-primary"><b>Availability of backup contractor :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Availability_of_backup_contractor}"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label text-primary"><b>Detour length :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Detour_length}"></label>
+                            <label class="col-sm-4 control-label text-primary"><b>Availability of fund :</b></label>
+                            <label class="col-sm-1 control-label" th:text="${BRI.Availability_of_fund}"></label>
+                        </div>
+                    </fieldset><br>
+                    <button id="bri" class="btn btn-info col-2 center" type="submit">Back To Home</button><br>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script crossorigin="anonymous"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

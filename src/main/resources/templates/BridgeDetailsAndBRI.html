@@ -12,9 +12,8 @@
 </head>
 <body style="background-color: #efebe9;">
     <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #9e9e9e;">
-        <h3 class="nav-item text-success">Bridge Details and BRI Inputs</h3>
+        <h3 class="nav-item text-success" th:text="${name}"></h3>
         <div class="ml-auto">
-            <button class="btn btn-info" id="showbri" disabled  type="button" data-toggle="modal" data-target="#Generate_BRI">Show BRI Result</button>
            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Resilience_Rating_Scale"> Resilience Rating Scale </button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Range_Of_TOSE_Factors_Values"> Range Of TOSE Factors Values </button>
         </div>
@@ -22,13 +21,13 @@
     <div class="modal fade" id="Resilience_Rating_Scale" tabindex="-1" role="dialog" aria-labelledby="Resilience Rating Scale" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel"> Proposed description of resilience rating scale</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header" style="background-color: #0d0863;">
+                    <h4 class="modal-title" id="exampleModalLabel" style="color: #cfe010"><b>Proposed description of resilience rating scale</b></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #cfe010">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="background-color: #f2f4f5;">
                     <div class="row border bg-info">
                             <div class="col-sm-2 text-center font-weight-bold">
                                 <h4>Rating scale</h4>
@@ -104,13 +103,13 @@
     <div class="modal fade" id="Range_Of_TOSE_Factors_Values" tabindex="-1" role="dialog" aria-labelledby="Range Of TOSE Factors Values" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel"> Range Of Values Corresponding To TOSE Factors</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header" style="background-color: #0d0863;">
+                    <h3 class="modal-title" id="exampleModalLabel" style="color: #cfe010"> <b>Range Of Values Corresponding To TOSE Factors</b></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #cfe010">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="background-color: #f2f4f5;">
                     <div class="table-responsive-lg">
                         <table class="table table-bordered">
                             <thead class="thead-dark text-center">
@@ -277,22 +276,22 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header text-center bg-info text-warning">
-            <h3 class="text-center" th:text="${name}"></h3>
-        </div>
         <div class="card-body">
             <div>
                 <iframe type="application/pdf"
                         th:src="@{'/pdf/'+${name}+'.pdf'}" alt="Name"
                         width="100%" height="1400px"></iframe>
             </div>
-            <div>
-                <form class="form-horizontal" method="POST" th:action="@{/BridgeDetailsAndBRI/genratebri}" th:object="${BRI}">
+            <div style="background-color:#eddedd;">
+                <form class="form-horizontal" method="POST" th:action="@{'/BridgeDetailsAndBRI/genratebri/'+${name}}" th:object="${BRI}">
+                    <div class="card-header text-center bg-info text-warning">
+                        <h3 class="text-center" th:text="${name}"></h3>
+                    </div><br>
                     <!--Robustness -->
                     <fieldset class="border border-primary rounded-sm w-100 p-3">
-                        <legend  class="w-auto text-dark">Robustness</legend>
+                        <legend  class="w-auto border border-primary rounded-sm w-100 p-1" style="background-color:#19f7f7;color:#6b1e04;"><b>Robustness</b></legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#BridgeVulnerabilityformmodal">Bridge Vulnerability :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#BridgeVulnerabilityformmodal">Bridge Vulnerability :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Bridge_Vulnerability}" >
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -300,7 +299,7 @@
                                 <option value=0.75>0.75</option>
                                 <option value=1.00>1.00</option>
                             </select>
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Predictionformmodal">Prediction of acute shock severity :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Predictionformmodal">Prediction of acute shock severity :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Prediction_of_acute_shock_severity}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -310,7 +309,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Averagedailytrafficformmodal">Average daily traffic :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Averagedailytrafficformmodal">Average daily traffic :</a></label>
                             <select class="form-control-sm" style="width:auto;"  th:field="*{Average_daily_traffic}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -318,7 +317,7 @@
                                 <option value=0.75>0.75</option>
                                 <option value=1.00>1.00</option>
                             </select>
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Preliminaryrestorationcostformmodal">Preliminary restoration cost :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Preliminaryrestorationcostformmodal">Preliminary restoration cost :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Preliminary_restoration_cost}" id="Prediction_of_acute_shock_severity">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -327,12 +326,12 @@
                                 <option value=1.00>1.00</option>
                             </select>
                         </div>
-                    </fieldset>
+                    </fieldset><br>
                     <!--Rapidity-->
                     <fieldset class="border border-primary rounded-sm w-100 p-3">
-                        <legend  class="w-auto text-dark">Rapidity</legend>
+                        <legend  class="w-auto border border-primary rounded-sm w-100 p-1" style="background-color:#19f7f7;color:#6b1e04;"><b>Rapidity</b></legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Restorationtimeformmodal">Restoration time :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Restorationtimeformmodal">Restoration time :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Restoration_time}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -340,7 +339,7 @@
                                 <option value=0.75>0.75</option>
                                 <option value=1.00>1.00</option>
                             </select>
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Disastermanagementformmodal">Disaster management :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Disastermanagementformmodal">Disaster management :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Disaster_management}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -350,7 +349,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Areaorregionaffectedformmodal">Area or region affected :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Areaorregionaffectedformmodal">Area or region affected :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Area_or_region_affected}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -358,7 +357,7 @@
                                 <option value=0.75>0.75</option>
                                 <option value=1.00>1.00</option>
                             </select>
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#DurationforProcuringandTenderingformmodal">Duration for Procuring and Tendering :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#DurationforProcuringandTenderingformmodal">Duration for Procuring and Tendering :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Duration_for_Procuring_and_Tendering}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -367,12 +366,12 @@
                                 <option value=1.00>1.00</option>
                             </select>
                         </div>
-                    </fieldset>
+                    </fieldset><br>
                     <!--Resourcefulness-->
                     <fieldset class="border border-primary rounded-sm w-100 p-3">
-                        <legend  class="w-auto text-dark">Resourcefulness</legend>
+                        <legend  class="w-auto border border-primary rounded-sm w-100 p-1" style="background-color:#19f7f7;color:#6b1e04;"><b>Resourcefulness</b></legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Inspectiontechniqueformmodal">Inspection technique :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Inspectiontechniqueformmodal">Inspection technique :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Inspection_technique}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -380,7 +379,7 @@
                                 <option value=0.75>0.75</option>
                                 <option value=1.00>1.00</option>
                             </select>
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#MaturityinPlanningandschedulingformmodal">Maturity in Planning and scheduling :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#MaturityinPlanningandschedulingformmodal">Maturity in Planning and scheduling :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Maturity_in_Planning_and_scheduling}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -390,7 +389,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Emergencyresponsemanagementformmodal">Emergency response management :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Emergencyresponsemanagementformmodal">Emergency response management :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Emergency_response_management}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -398,7 +397,7 @@
                                 <option value=0.75>0.75</option>
                                 <option value=1.00>1.00</option>
                             </select>
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Arrangementfundsformmodal">Arrangement funds :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Arrangementfundsformmodal">Arrangement funds :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Arrangement_funds}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -407,12 +406,12 @@
                                 <option value=1.00>1.00</option>
                             </select>
                         </div>
-                    </fieldset>
+                    </fieldset><br>
                     <!--Redundancy -->
                     <fieldset class="border border-primary rounded-sm w-100 p-3">
-                        <legend  class="w-auto text-dark">Redundancy</legend>
+                        <legend  class="w-auto border border-primary rounded-sm w-100 p-1" style="background-color:#19f7f7;color:#6b1e04;"><b>Redundancy</b></legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityofmaterialsandequipmentsformmodal">Availability of materials and equipments :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityofmaterialsandequipmentsformmodal">Availability of materials and equipments :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_materials_and_equipments}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -420,7 +419,7 @@
                                 <option value=0.75>0.75</option>
                                 <option value=1.00>1.00</option>
                             </select>
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityofbackupcontractorformmodal">Availability of backup contractor :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityofbackupcontractorformmodal">Availability of backup contractor :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_backup_contractor}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -430,7 +429,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Detourlengthformmodal">Detour length :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Detourlengthformmodal">Detour length :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Detour_length}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -438,7 +437,7 @@
                                 <option value=0.75>0.75</option>
                                 <option value=1.00>1.00</option>
                             </select>
-                            <label class="col-sm-3 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityoffundformmodal">Availability of fund :</a></label>
+                            <label class="col-sm-4 control-label text-primary"><a data-toggle="modal" data-target="#Availabilityoffundformmodal">Availability of fund :</a></label>
                             <select class="form-control-sm" style="width:auto;" th:field="*{Availability_of_fund}">
                                 <option value=0.00>0.00</option>
                                 <option value=0.25>0.25</option>
@@ -456,21 +455,6 @@
     </div>
 
     <!-- Generate_BRI Modal -->
-    <div class="modal fade" id="Generate_BRI" tabindex="-1" role="dialog" aria-labelledby="Generate_BRILabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-dark">
-                    <h5 class="modal-title text-center text-primary" id="Generate_BRI1">Bridge Resilience</h5>
-                </div>
-                <div class="modal-body bg-secondary">
-                    <h1 class="text-danger text-center" th:text="${BRI_Value}"><b>BRI:</b></h1>
-                </div>
-                <div class="modal-footer bg-dark">
-                    <a th:href="@{/home.html}"><button type="button" class="btn btn-danger" data-dismiss="modal">Close</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="BridgeVulnerabilityformmodal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -836,15 +820,9 @@
             </div>
         </div>
     </div>
+</div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script type="text/javascript">
-        $(function () {
-            $("#bri").click(function () {
-                $("#showbri").prop("disabled",false);
-            });
-        });
-    </script>
     <script crossorigin="anonymous"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -854,6 +832,5 @@
     <script crossorigin="anonymous"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</div>
 </body>
 </html>

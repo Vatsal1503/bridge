@@ -1,23 +1,67 @@
 package com.bridge.resilience.bridgeresilience.model;
 
-public class BRI {
+import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+@Entity
+@Table(name = "BRI")
+public class BRI implements Serializable {
+    @Column
     private String bridge_name;
+    @Column
     private double Bridge_Vulnerability;
+    @Column
     private double Prediction_of_acute_shock_severity;
+    @Column
     private double Average_daily_traffic;
+    @Column
     private double Preliminary_restoration_cost;
+    @Column
     private double Restoration_time;
+    @Column
     private double Disaster_management;
+    @Column
     private double Area_or_region_affected;
+    @Column
     private double Duration_for_Procuring_and_Tendering;
+    @Column
     private double Inspection_technique;
+    @Column
     private double Maturity_in_Planning_and_scheduling;
+    @Column
     private double Emergency_response_management;
+    @Column
     private double Arrangement_funds;
+    @Column
     private double Availability_of_materials_and_equipments;
+    @Column
     private double Availability_of_backup_contractor;
+    @Column
     private double Detour_length;
+    @Column
     private double Availability_of_fund;
+    @Column(name = "Bridge_Resilience")
+    private double BRI;
+    @Id
+    @Column(name = "created_date")
+    private Timestamp createDate;
+
+    public Timestamp getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
+    }
+
+    public double getBRI() {
+        return BRI;
+    }
+
+    public void setBRI(double BRI) {
+        this.BRI = BRI;
+    }
 
     public String getBridge_name() {
         return bridge_name;
