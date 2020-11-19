@@ -40,5 +40,3 @@ CREATE TABLE `BRI` (
 `created_date` Timestamp NOT NULL,
   PRIMARY KEY (`created_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `pdftable` VALUES (1,'Savijibhai Korat Bridge','C:/Users/atu/Desktop/Savijibhai_Korat_Bridge.pdf');

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://WWW.thymeleaf.org">
+<head>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          name="viewport">
+    <link crossorigin="anonymous"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet"/>
+    <title>Bridge Resilience Application</title>
+</head>
+<body style="background-color: #efebe9;">
+<div class="table-responsive-lg">
+    <table class="table table-bordered">
+        <thead class="thead-dark text-center">
+        <tr>
+            <th scope="col">Bridge Name</th>
+            <th scope="col">Bridge Resilience</th>
+            <th scope="col">Date And Time</th>
+            <th scope="col">Bridge Vulnerability</th>
+            <th scope="col">Prediction Of Acute Shock Severity</th>
+            <th scope="col">Average Daily Traffic</th>
+            <th scope="col">Preliminary Restoration Cost</th>
+            <th scope="col">Restoration Time</th>
+            <th scope="col">Disaster Management</th>
+            <th scope="col">Area or Region Affected</th>
+            <th scope="col">Duration for Procuring and Tendering</th>
+            <th scope="col">Inspection Technique</th>
+            <th scope="col">Maturity in Planning and scheduling</th>
+            <th scope="col">Emergency Response Management</th>
+            <th scope="col">Arrangement Funds</th>
+            <th scope="col">Availability Of Materials and Equipments</th>
+            <th scope="col">Availability Of Backup Contractor</th>
+            <th scope="col">Detour Length</th>
+            <th scope="col">Availability Of Fund</th>
+        </tr>
+        </thead>
+        <tbody class="text-center bg-light">
+        <tr th:each="tempBridge_Report : ${list_of_Bridge}">
+            <td th:text="${tempBridge_Report.bridge_name}"/>
+            <td th:text="${tempBridge_Report.BRI}"/>
+            <td th:text="${tempBridge_Report.createDate}"/>
+            <td th:text="${tempBridge_Report.Bridge_Vulnerability}"/>
+            <td th:text="${tempBridge_Report.Prediction_of_acute_shock_severity}"/>
+            <td th:text="${tempBridge_Report.Average_daily_traffic}"/>
+            <td th:text="${tempBridge_Report.Preliminary_restoration_cost}"/>
+            <td th:text="${tempBridge_Report.Restoration_time}"/>
+            <td th:text="${tempBridge_Report.Disaster_management}"/>
+            <td th:text="${tempBridge_Report.Area_or_region_affected}"/>
+            <td th:text="${tempBridge_Report.Duration_for_Procuring_and_Tendering}"/>
+            <td th:text="${tempBridge_Report.Inspection_technique}"/>
+            <td th:text="${tempBridge_Report.Maturity_in_Planning_and_scheduling}"/>
+            <td th:text="${tempBridge_Report.Emergency_response_management}"/>
+            <td th:text="${tempBridge_Report.Arrangement_funds}"/>
+            <td th:text="${tempBridge_Report.Availability_of_materials_and_equipments}"/>
+            <td th:text="${tempBridge_Report.Availability_of_backup_contractor}"/>
+            <td th:text="${tempBridge_Report.Detour_length}"/>
+            <td th:text="${tempBridge_Report.Availability_of_fund}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
