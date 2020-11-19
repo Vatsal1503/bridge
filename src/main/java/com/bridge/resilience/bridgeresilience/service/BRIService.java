@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Service
+@Service("briService")
 public class BRIService {
 
     @Autowired
@@ -22,7 +22,9 @@ public class BRIService {
 
     @Transactional
     public List<BRI> findByIdServices(String bridge_name) {
-
+        if(bridge_name.equals("")){
+            return BRIRepository.findAll();
+        }
         return BRIRepository.findByBridge_name(bridge_name);
     }
 }

@@ -9,7 +9,7 @@
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
           crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet"/>
-    <title>Spring Boot Application</title>
+    <title>Bridge Resilience Application</title>
 </head>
 <body style="background-color: #efebe9;">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #13154a;">
@@ -24,15 +24,18 @@
             <li class="nav-item active">
                 <a class="nav-link text-white" th:href="@{/home.html}">Home <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white" th:href="@{/listofbridge}">Reports <span class="sr-only">(current)</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link text-white" th:href="@{/about.html}">About</a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link text-white" th:href="@{/contact.html}">Contact Us</a>
-            </li>
+            </li>-->
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0"  th:action="@{/reports}" th:object="${BRI}">
+            <input id="tags" class="form-control mr-sm-2 typeahead" th:field="*{bridge_name}" type="search" placeholder="Search Bridge Name" aria-label="Search">
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
         <!--<div class="mx-2">
@@ -141,5 +144,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
+    <script type="text/javascript" rel="stylesheet">
+	$(document).ready(function(){
+		var name = ["Afghanistan", "Albania", "Bahamas", "Bahrain", "Cambodia", "Cameroon", "Denmark", "Djibouti", "East Timor", "Ecuador", "Falkland Islands (Malvinas)", "Faroe Islands", "Gabon", "Gambia", "Haiti", "Heard and Mc Donald Islands", "Iceland", "India", "Jamaica", "Japan", "Kenya", "Kiribati", "Lao People's Democratic Republic", "Latvia", "Macau", "Macedonia", "Namibia", "Nauru", "Oman", "Pakistan", "Palau", "Qatar", "Reunion", "Romania", "Saint Kitts and Nevis", "Saint Lucia", "Taiwan", "Tajikistan", "Uganda", "Ukraine", "Vanuatu", "Vatican City State", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zaire", "Zambia"];
+        $( "#tags" ).autocomplete({
+      source: name
+    });
+	});
+	</script>
 </body>
 </html>
